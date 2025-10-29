@@ -1,0 +1,45 @@
+#!/bin/bash
+
+
+
+
+# -------- DEFINITIONS --------
+
+#exit on error
+set -e
+
+#current executable directory
+CXD=$(dirname $(readlink -f $0))
+pCXD=$(dirname $CXD)
+
+#C compiler
+export CC=gcc
+
+#paths
+OUT=$pCXD/out
+TMP=$OUT/tmp
+
+
+
+
+
+
+# -------- PREPARE ENVIRONMENT --------
+
+#clean
+$CXD/clean
+
+#remove previous blds
+#rm --force $OUT/... #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< no generation for the moment
+
+#tmp dir
+[[ ! -d $TMP ]] && mkdir --parents $TMP
+
+
+
+
+
+
+# -------- EXECUTION --------
+
+#... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< nothing for the moment
