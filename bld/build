@@ -12,10 +12,8 @@ set -e
 CXD=$(dirname $(readlink -f $0))
 pCXD=$(dirname $CXD)
 
-#C compiler
-export CC=gcc
-
 #paths
+SRC=$pCXD/src
 OUT=$pCXD/out
 TMP=$OUT/tmp
 
@@ -30,7 +28,7 @@ TMP=$OUT/tmp
 $CXD/clean
 
 #remove previous blds
-#rm --force $OUT/... #<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< no generation for the moment
+rm --force $OUT/n-to-obj.elf
 
 #tmp dir
 [[ ! -d $TMP ]] && mkdir --parents $TMP
@@ -42,4 +40,5 @@ $CXD/clean
 
 # -------- EXECUTION --------
 
-#... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< nothing for the moment
+#copy as if it was a real ELF build
+cp $SRC/n-to-obj.py $OUT/n-to-obj.elf

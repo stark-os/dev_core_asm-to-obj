@@ -47,7 +47,7 @@ t1 Use
 t2 Install
 
 p If you have downloaded the compiler, you will have to extract it \
-completely to see a directory containing: \mn_to_obj.elf\m. \
+completely to see a directory containing: \mn-to-obj.elf\m. \
 This is your ready-to-use application directory so make sure to keep \
 it somewhere appropriate as long as you need it.
 
@@ -57,7 +57,7 @@ environment variable. That way, you will be able to access it as any \
 other shell command:
 "bash
 #example on Stark OS system
-ln --symbolic /MY/PATH/TO/n_to_obj.elf /usr/$USR/.cmd/n_to_obj
+ln --symbolic /MY/PATH/TO/n-to-obj.elf /usr/$USR/.cmd/n-to-obj
 "
 l Compiler is successfully installed.
 
@@ -86,7 +86,7 @@ you have used when installing. Also, if you created a link to access \
 the compiler as a variable, you should remove it as well:
 " bash
 #using the same example on Stark OS system
-rm /usr/$USR/.cmd/n_to_obj
+rm /usr/$USR/.cmd/n-to-obj
 "
 l Compiler is successfully uninstalled.
 
@@ -99,9 +99,11 @@ l To build the compiler yourself, simply run:
 " bash
 bld/build
 "
-l The resulting files generated are in the \mout/\m directory. \
+p The resulting files generated are in the \mout/\m directory. \
 You may find more than what is inside the downloadable package files. \
 However, you should not have anything missing.
+
+l Directory \mapp/\m gives you shortcuts to all executable result.
 
 l Also, this compiler can be built directly under the ready-to-use \
 stark package format (same as downloadable resources):
