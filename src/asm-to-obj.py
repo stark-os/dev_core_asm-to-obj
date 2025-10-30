@@ -197,7 +197,7 @@ def main(args):
 	for s in sdls:
 		rawName = os.path.basename(s).split('.')[0]
 		cmd.append("-l" + rawName)                  #remove ALL extensions
-		os.system("ln -s " + s + " " + CWD + "/.asm-to-obj/lib" + rawname + ".so")
+		os.system("ln -s " + s + " " + CWD + "/.asm-to-obj/lib" + rawName + ".so")
 
 	#src
 	writeFile(".asm-to-obj/tmp.c", srcSum)
