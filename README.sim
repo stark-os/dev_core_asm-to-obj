@@ -1,6 +1,6 @@
-t0c N to OBJ compiler
+t0c ASM to OBJ Compiler
 
-l Compiler from \bN\b programs into \bObject\b format.
+l Compiler from \bAssembly\b programs into \bObject\b format.
 
 b
 b
@@ -47,7 +47,7 @@ t1 Use
 t2 Install
 
 p If you have downloaded the compiler, you will have to extract it \
-completely to see a directory containing: \mn-to-obj.elf\m. \
+completely to see a directory containing: \masm-to-obj.elf\m. \
 This is your ready-to-use application directory so make sure to keep \
 it somewhere appropriate as long as you need it.
 
@@ -57,16 +57,16 @@ environment variable. That way, you will be able to access it as any \
 other shell command:
 "bash
 #example on Stark OS system
-ln --symbolic /MY/PATH/TO/n-to-obj.elf /usr/$USR/.cmd/n-to-obj
+ln --symbolic /MY/PATH/TO/asm-to-obj.elf /usr/$USR/.cmd/asm-to-obj
 "
 l Compiler is successfully installed.
 
 
 t2 Usage
 
-p Then, you can compile directly by giving some N files as argument:
+p Then, you can compile directly by giving some ASM files as argument:
 " bash
-n-to-obj prgm1.n,pgrm2.n
+asm-to-obj prgm1.asm,pgrm2.asm
 "
 p Result will have the same name as the 1st given file, except for \
 the extension that will be turned into \m.obj\m.
@@ -74,7 +74,7 @@ the extension that will be turned into \m.obj\m.
 p Lots of options can be provided for different purposes. \
 Check out the help menu for more information:
 " bash
-n-to-obj --help
+asm-to-obj --help
 "
 l There you go.
 
@@ -86,7 +86,7 @@ you have used when installing. Also, if you created a link to access \
 the compiler as a variable, you should remove it as well:
 " bash
 #using the same example on Stark OS system
-rm /usr/$USR/.cmd/n-to-obj
+rm /usr/$USR/.cmd/asm-to-obj
 "
 l Compiler is successfully uninstalled.
 
