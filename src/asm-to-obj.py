@@ -183,7 +183,7 @@ def main(args):
 		outputPath = firstSrcName + ".obj"
 
 	#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< C compiler used as temporary alternative
-	cmd = ["gcc", "-nostdlib", "-c", CWD + "/.n-to-obj/tmp.c", "-L" + CWD + "/.asm-to-obj/"]
+	cmd = ["gcc", "-nostdlib", "-c", CWD + "/.asm-to-obj/tmp.c", "-L" + CWD + "/.asm-to-obj/"]
 
 	#tmp dir
 	os.system("rm -rf .asm-to-obj/")
@@ -203,7 +203,7 @@ def main(args):
 	writeFile(".asm-to-obj/tmp.c", srcSum)
 
 	#output path dir
-	outputPath_dir = os.path.dirname(outputPath)
+	outputPath_dir = os.path.dirname(os.path.abspath(outputPath))
 	if not os.path.isdir(outputPath_dir):
 		os.makedirs(outputPath_dir)
 
@@ -213,7 +213,7 @@ def main(args):
 		p = subprocess.run(cmd, stdout=subprocess.PIPE)
 		print(p.stdout.decode(), end='')
 	except ImportError:
-		err("Failed to compile N sources to OBJ, compilation errors occured.")
+		err("Failed to compile ASM sources to OBJ, compilation errors occured.")
 
 	#output move
 	os.system("mv " + CWD + "/tmp.o " + outputPath)
