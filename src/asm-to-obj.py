@@ -85,11 +85,11 @@ def main(args):
 
 			#help menu
 			if args[a] in ("-h", "--help"):
-				print("Usage: n-to-obj [option] <src1.n,src2.n...> [sdl1.so.cfg,sdl2.so.cfg...]")
+				print("Usage: asm-to-obj [option] <src1.asm,src2.asm...> [sdl1.so.cfg,sdl2.so.cfg...]")
 				print()
-				print("Compile N programs into OBJ.")
+				print("Compile ASM programs into OBJ.")
 				print()
-				print("All given N sources will be added together as it was one big file.")
+				print("All given ASM sources will be added together as it was one big file.")
 				print("Same thing for the second argument (optional) which serves for external SDL linking.")
 				print()
 				print("Options :")
@@ -100,10 +100,10 @@ def main(args):
 				print("                       and replacing extension by \".obj\".")
 				print()
 				print("Examples:")
-				print("  n-to-obj --debug my/dir/myFile.n")
-				print("  #Compile program my/dir/myFile.n into myFile.obj at current location, with debug traces.")
+				print("  asm-to-obj --debug my/dir/myFile.asm")
+				print("  #Compile program my/dir/myFile.asm into myFile.obj at current location, with debug traces.")
 				print()
-				print("  n-to-obj f1.n,f2.n,f3.n core.sdl.cfg")
+				print("  asm-to-obj f1.asm,f2.asm,f3.asm core.sdl.cfg")
 				print("  #compile the 3 input files as one, with possible external SDL link with core.sdl.")
 				print()
 				print("Let's Code !                                  By I.A.")
@@ -130,7 +130,7 @@ def main(args):
 			#option: output
 			elif args[a] in ("-o", "--output"):
 				if len(args) < a+2:
-					err("n-to-obj: Missing <path> to option '-o/--output'.")
+					err("Missing <path> to option '-o/--output'.")
 
 				#action
 				outputPath = args[a+1]
@@ -148,7 +148,7 @@ def main(args):
 
 	#args: src paths (required)
 	if len(args_without_opts) == 0:
-		err("Missing N source input file(s).")
+		err("Missing ASM source input file(s).")
 
 	#gather them as one big file
 	srcSum       = ""
@@ -156,11 +156,11 @@ def main(args):
 	firstSrcName = '.'.join(os.path.basename(srcPaths[0]).split('.')[:-1])
 	for p in srcPaths:
 		if not os.path.isfile(p):
-			err("Unable to find N source input file \"" + p + "\".")
+			err("Unable to find ASM source input file \"" + p + "\".")
 		try:
 			srcSum += readFile(p)
 		except:
-			err("Unable to read from N source input file \"" + p + "\".")
+			err("Unable to read from ASM source input file \"" + p + "\".")
 
 	#args: sdl fp (optional)
 	sdls = []
@@ -183,11 +183,11 @@ def main(args):
 		outputPath = firstSrcName + ".obj"
 
 	#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< C compiler used as temporary alternative
-	cmd = ["gcc", "-nostdlib", "-c", CWD + "/.n-to-obj/tmp.c", "-L" + CWD + "/.n-to-obj/"]
+	cmd = ["gcc", "-nostdlib", "-c", CWD + "/.n-to-obj/tmp.c", "-L" + CWD + "/.asm-to-obj/"]
 
 	#tmp dir
-	os.system("rm -rf .n-to-obj/")
-	os.system("mkdir  .n-to-obj/")
+	os.system("rm -rf .asm-to-obj/")
+	os.system("mkdir  .asm-to-obj/")
 
 	#PIC
 	if PICEnabled:
@@ -197,10 +197,10 @@ def main(args):
 	for s in sdls:
 		rawName = os.path.basename(s).split('.')[0]
 		cmd.append("-l" + rawName)                  #remove ALL extensions
-		os.system("ln -s " + s + " " + CWD + "/.n-to-obj/lib" + rawname + ".so")
+		os.system("ln -s " + s + " " + CWD + "/.asm-to-obj/lib" + rawname + ".so")
 
 	#src
-	writeFile(".n-to-obj/tmp.c", srcSum)
+	writeFile(".asm-to-obj/tmp.c", srcSum)
 
 	#output path dir
 	outputPath_dir = os.path.dirname(outputPath)
