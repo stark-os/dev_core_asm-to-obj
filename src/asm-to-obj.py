@@ -183,7 +183,7 @@ def main(args):
 		outputPath = firstSrcName + ".obj"
 
 	#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< C compiler used as temporary alternative
-	cmd = ["gcc", "-nostdlib", "-c", CWD + "/.asm-to-obj/tmp.c", "-L" + CWD + "/.asm-to-obj/"]
+	cmd = ["gcc", "-nostdlib", "-c", CWD + "/.asm-to-obj/tmp.s", "-L" + CWD + "/.asm-to-obj/"]
 
 	#tmp dir
 	os.system("rm -rf .asm-to-obj/")
@@ -200,7 +200,7 @@ def main(args):
 		os.system("ln -s " + s + " " + CWD + "/.asm-to-obj/lib" + rawName + ".so")
 
 	#src
-	writeFile(".asm-to-obj/tmp.c", srcSum)
+	writeFile(".asm-to-obj/tmp.s", srcSum)
 
 	#output path dir
 	outputPath_dir = os.path.dirname(os.path.abspath(outputPath))
